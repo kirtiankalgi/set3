@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rotate Array</title>
+</head>
+<body>
+
+    <h2>Rotate Arr</h2>
+    <label for="numbers">Enter integers separated by commas:</label>
+    <input type="text" id="numbers">
+    <label for="steps">Enter the number of steps to rotate:</label>
+    <input type="number" id="steps">
+    <button onclick="rotateArray()">Rotate Array</button>
+
+    <p id="result"></p>
+
+    <script>
+        function rotateArray() {
+            // Get the input from the text fields
+            const input = document.getElementById('numbers').value;
+            const k = parseInt(document.getElementById('steps').value);
+
+            let arr = input.split(',').map(Number);
+
+            if (arr.length === 0) {
+                document.getElementById('result').innerText = "Array is empty.";
+                return;
+            }
+
+            const n = arr.length;
+            const steps = k % n; 
+
+            const rotatedArray = arr.slice(n - steps).concat(arr.slice(0, n - steps));
+
+            document.getElementById('result').innerText = `Rotated Array: ${rotatedArray.join(', ')}`;
+        }
+    </script>
+
+</body>
+</html>
